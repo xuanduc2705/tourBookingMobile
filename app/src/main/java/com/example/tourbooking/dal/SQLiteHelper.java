@@ -16,7 +16,7 @@ import java.util.List;
 
 public class SQLiteHelper extends SQLiteOpenHelper {
     private static final String DATABASE_NAME = "TOUR.db";
-    private static int DATABASE_VERSION = 1;
+    private static int DATABASE_VERSION = 3;
     public SQLiteHelper(@Nullable Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
     }
@@ -43,9 +43,30 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     }
 
     @Override
-    public void onUpgrade(SQLiteDatabase sqLiteDatabase, int i, int i1) {
-
+    public void onUpgrade(SQLiteDatabase db, int i, int i1) {
+//        String insertUserData = "INSERT INTO User (status, name, address, phone, email, dob, image, isAdmin) VALUES " +
+//                "(1, 'John Doe', '123 Main St', '0123456789', 'john.doe@example.com', '1990-01-01', 'john_image.jpg', 0), " +
+//                "(1, 'Jane Smith', '456 Elm St', '0987654321', 'jane.smith@example.com', '1992-02-02', 'jane_image.jpg', 1), " +
+//                "(0, 'Alice Brown', '789 Maple Ave', '0112233445', 'alice.brown@example.com', '1995-03-03', 'alice_image.jpg', 0)";
+//        db.execSQL(insertUserData);
+//
+//        // Chèn dữ liệu mẫu vào bảng Tour
+//        String insertTourData = "INSERT INTO Tour (category_id, tour_name, description, address, image, time_tour, start_date, end_date, create_at, update_at, delete_at, guide_name, guide_phone, guide_image, price) VALUES " +
+//                "(1, 'City Tour', 'Explore the main attractions of the city.', 'City Center', 'city_tour.jpg', '2 hours', '2024-06-01', '2024-06-01', '2024-05-01', '2024-05-02', NULL, 'David Lee', '0123456788', 'david_image.jpg', 100.0), " +
+//                "(2, 'Beach Adventure', 'A fun day at the beach with activities.', 'Sunny Beach', 'beach_adventure.jpg', '5 hours', '2024-07-01', '2024-07-01', '2024-06-01', '2024-06-02', NULL, 'Emma Wong', '0987654322', 'emma_image.jpg', 150.0), " +
+//                "(3, 'Mountain Hike', 'A challenging hike up the mountains.', 'Mountain Base', 'mountain_hike.jpg', '6 hours', '2024-08-01', '2024-08-01', '2024-07-01', '2024-07-02', NULL, 'Mark Green', '0112233446', 'mark_image.jpg', 200.0)";
+//        db.execSQL(insertTourData);
+//
+//        // Chèn dữ liệu mẫu vào bảng Booking
+//        String insertBookingData = "INSERT INTO Booking (tour_id, user_id, numOfPeople, status, total, bookingDate) VALUES " +
+//                "(1, 1, 2, 1, 200.0, '2024-05-20'), " +
+//                "(2, 2, 4, 1, 600.0, '2024-06-15'), " +
+//                "(3, 3, 1, 0, 200.0, '2024-07-10')";
+//        db.execSQL(insertBookingData);
     }
+
+
+
     public void addCategories(List<Category> categories) {
         SQLiteDatabase db = this.getWritableDatabase();
         db.beginTransaction();
@@ -75,8 +96,11 @@ public class SQLiteHelper extends SQLiteOpenHelper {
     public List<Category> getAllBookings() {
         List<Category> list = new ArrayList<>();
         String selectQuery = "SELECT * FROM Category" +  " ORDER BY create_at DESC";
+     //   String selectQuery1 = "SELECT * FROM Booking" ;
+
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(selectQuery, null);
+   //     Cursor cursor1 = db.rawQuery(selectQuery1, null);
 
         if (cursor.moveToFirst()) {
             do {
@@ -92,7 +116,10 @@ public class SQLiteHelper extends SQLiteOpenHelper {
         } else {
             Log.d("SQLiteHelper", "No data found in Category table");
         }
+
+
         cursor.close();
+
         return list;
     }
 
