@@ -46,6 +46,10 @@ public class MainActivity extends AppCompatActivity {
                     tab.setText("Tài khoản");
                     tab.setIcon(R.drawable.ic_account); // Đặt icon cho tab Lịch sử
                     break;
+                case 5:
+                    tab.setText("Đăng nhập");
+                    tab.setIcon(R.drawable.ic_account);
+                    break;
             }
         }).attach();
     }

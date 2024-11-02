@@ -47,7 +47,7 @@ db.clearCategories();
         db.addCategories(categoryList1);
 
         // Retrieve list from database and set adapter
-        List<Category> categoryList = db.getAllBookings();
+        List<Category> categoryList = db.getAllCategories();
         adapter = new RecycleViewAdapter(this); // Pass 'this' as the ItemListener
         adapter.setList(categoryList);
 
