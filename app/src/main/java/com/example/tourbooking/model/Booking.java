@@ -20,6 +20,15 @@ public class Booking implements Serializable {
         this.user_id = user_id;
     }
 
+    public Booking(String bookingDate, int numOfPeople, int status, float total, int tour_id, int user_id) {
+        this.bookingDate = bookingDate;
+        this.numOfPeople = numOfPeople;
+        this.status = status;
+        this.total = total;
+        this.tour_id = tour_id;
+        this.user_id = user_id;
+    }
+
     public String getBookingDate() {
         return bookingDate;
     }

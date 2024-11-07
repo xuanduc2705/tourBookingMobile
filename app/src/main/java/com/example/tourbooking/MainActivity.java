@@ -20,7 +20,6 @@ public class MainActivity extends AppCompatActivity {
         TabLayout tabLayout = findViewById(R.id.tabLayout);
         ViewPager2 viewPager = findViewById(R.id.viewPager);
 
-        // Thiết lập adapter cho ViewPager
         ViewPagerAdapter adapter = new ViewPagerAdapter(this);
         viewPager.setAdapter(adapter);
 
@@ -28,23 +27,23 @@ public class MainActivity extends AppCompatActivity {
             switch (position) {
                 case 0:
                     tab.setText("Home");
-                    tab.setIcon(R.drawable.ic_home); // Đặt icon cho tab Home
+                    tab.setIcon(R.drawable.ic_home);
                     break;
                 case 1:
-                    tab.setText("Tìm kiếm");
-                    tab.setIcon(R.drawable.ic_search); // Đặt icon cho tab Tìm kiếm
+                    tab.setText("Search");
+                    tab.setIcon(R.drawable.ic_search);
                     break;
+//                case 2:
+//                    tab.setText("Explore");
+//                    tab.setIcon(R.drawable.ic_booking);
+//                    break;
                 case 2:
-                    tab.setText("Đơn của tôi");
-                    tab.setIcon(R.drawable.ic_booking); // Đặt icon cho tab Lịch sử
+                    tab.setText("History");
+                    tab.setIcon(R.drawable.ic_history);
                     break;
                 case 3:
-                    tab.setText("Lịch sử");
-                    tab.setIcon(R.drawable.ic_history); // Đặt icon cho tab Lịch sử
-                    break;
-                case 4:
-                    tab.setText("Tài khoản");
-                    tab.setIcon(R.drawable.ic_account); // Đặt icon cho tab Lịch sử
+                    tab.setText("Account");
+                    tab.setIcon(R.drawable.ic_account);
                     break;
             }
         }).attach();

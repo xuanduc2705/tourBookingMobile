@@ -1,68 +1,121 @@
 package com.example.tourbooking.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import androidx.viewpager2.widget.ViewPager2;
 
+import android.os.Handler;
+import android.os.Looper;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.tourbooking.DetailActivity;
 import com.example.tourbooking.R;
+import com.example.tourbooking.adapter.RecomendAdapter;
 import com.example.tourbooking.adapter.RecycleViewAdapter;
+import com.example.tourbooking.adapter.SlideAdapter;
 import com.example.tourbooking.dal.SQLiteHelper;
 import com.example.tourbooking.model.Category;
+import com.example.tourbooking.model.Tour;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Timer;
+import java.util.TimerTask;
 
-public class HomeFragment extends Fragment implements RecycleViewAdapter.ItemListener {
+public class HomeFragment extends Fragment implements RecycleViewAdapter.ItemListener, RecomendAdapter.ItemListener {
     private RecycleViewAdapter adapter;
-    private RecyclerView recyclerView;
+    private RecomendAdapter recommendAdapter;
+    private RecyclerView recyclerView, recyclerViewSliderRecommend;
     private SQLiteHelper db;
+    private ViewPager2 viewPagerSlider;
+    private SlideAdapter slideAdapter;
+    private List<Integer> sliderImages;
+    private int currentPage = 0;
+    private final long slideInterval = 3000L;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate layout for fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        // Initialize RecyclerView and adapter
+        viewPagerSlider = view.findViewById(R.id.viewPagerSlider);
+        recyclerViewSliderRecommend = view.findViewById(R.id.recyclerViewSliderRecommend);
         recyclerView = view.findViewById(R.id.recyclerView);
         db = new SQLiteHelper(getContext());
-db.clearCategories();
-        // Insert dummy data if needed
-        List<Category> categoryList1 = new ArrayList<>();
-        categoryList1.add(new Category(1, "beach", "Biển", "28/10/2024", "28/10/2024", "28/10/2024"));
-        categoryList1.add(new Category(2, "eco", "Sinh tha", "29/10/2024", "29/10/2024", "29/10/2024"));
-        categoryList1.add(new Category(3, "mountain", "Đồi núi", "30/10/2024", "30/10/2024", "30/10/2024"));
-        categoryList1.add(new Category(4, "resort", "Nghỉ dưỡng", "30/10/2024", "30/10/2024", "30/10/2024"));
-        categoryList1.add(new Category(5, "tradition", "Văn hóa", "30/10/2024", "30/10/2024", "30/10/2024"));
 
-        // Insert categories into the database
-        db.addCategories(categoryList1);
-
-        // Retrieve list from database and set adapter
-        List<Category> categoryList = db.getAllBookings();
-        adapter = new RecycleViewAdapter(this); // Pass 'this' as the ItemListener
+        db.addSampleTours();
+        List<Category> categoryList = db.getAllCategories();
+        adapter = new RecycleViewAdapter(this);
         adapter.setList(categoryList);
 
         Log.d("HomeFragment", "Category list size: " + categoryList.size());
 
-        // Set layout manager and adapter for RecyclerView
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
         recyclerView.setAdapter(adapter);
+
+        recommendAdapter = new RecomendAdapter(new RecomendAdapter.ItemListener() {
+            @Override
+            public void onItemClick(Tour tour) {
+                Intent intent = new Intent(getActivity(), DetailActivity.class);
+                intent.putExtra("tour", tour);
+                startActivity(intent);
+            }
+        });
+        recyclerViewSliderRecommend.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recyclerViewSliderRecommend.setAdapter(recommendAdapter);
+
+
+        List<Tour> tourList = db.getListTourShow();
+        recommendAdapter.setTourList(tourList);
+
+        sliderImages = new ArrayList<>();
+        sliderImages.add(R.drawable.travel);
+        sliderImages.add(R.drawable.travel2);
+        sliderImages.add(R.drawable.travel3);
+
+        slideAdapter = new SlideAdapter(getContext(), sliderImages);
+        viewPagerSlider.setAdapter(slideAdapter);
+
+        setupAutoSlide();
 
         return view;
     }
 
+    private void setupAutoSlide() {
+        final Handler handler = new Handler(Looper.getMainLooper());
+        Timer timer = new Timer();
+
+        TimerTask update = new TimerTask() {
+            @Override
+            public void run() {
+                handler.post(() -> {
+                    if (currentPage == sliderImages.size()) {
+                        currentPage = 0;
+                    }
+                    viewPagerSlider.setCurrentItem(currentPage++, true);
+                });
+            }
+        };
+
+        timer.schedule(update, slideInterval, slideInterval);
+    }
+
     @Override
     public void onItemClick(Category category) {
-        // Handle item click if additional actions are needed
-        Log.d("HomeFragment", "Item clicked: " + category.getName());
+        Log.d("HomeFragment", "Category item clicked: " + category.getName());
+    }
+
+    @Override
+    public void onItemClick(Tour tour) {
+        Log.d("HomeFragment", "Tour item clicked: " + tour.getTour_name());
     }
 }
+

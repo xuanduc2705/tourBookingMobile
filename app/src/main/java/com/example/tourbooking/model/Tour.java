@@ -4,12 +4,31 @@ import java.io.Serializable;
 
 public class Tour implements Serializable {
     private int id,category_id;
-    private String tour_name, description,address,image,time_tour,start_date,end_date,create_at,update_at,delete_at,guide_name,guide_phone,guide_image;
+    private String tour_name, description,address,image,time_tour,start_date,end_date,create_at,update_at,delete_at,guide_name,guide_phone,guide_image,location;
     private float price;
 
     public Tour() {
     }
 
+    public Tour(int id, int category_id, String tour_name, String description, String address, String image, String time_tour, String start_date, String end_date, String create_at, String update_at, String delete_at, String guide_name, String guide_phone, String guide_image, String location, float price) {
+        this.id = id;
+        this.category_id = category_id;
+        this.tour_name = tour_name;
+        this.description = description;
+        this.address = address;
+        this.image = image;
+        this.time_tour = time_tour;
+        this.start_date = start_date;
+        this.end_date = end_date;
+        this.create_at = create_at;
+        this.update_at = update_at;
+        this.delete_at = delete_at;
+        this.guide_name = guide_name;
+        this.guide_phone = guide_phone;
+        this.guide_image = guide_image;
+        this.location = location;
+        this.price = price;
+    }
     public Tour(String address, int category_id, String create_at, String delete_at, String description, String end_date, String guide_image, String guide_name, String guide_phone, int id, String image, float price, String start_date, String time_tour, String tour_name, String update_at) {
         this.address = address;
         this.category_id = category_id;
@@ -27,6 +46,13 @@ public class Tour implements Serializable {
         this.time_tour = time_tour;
         this.tour_name = tour_name;
         this.update_at = update_at;
+    }
+    public String getLocation() {
+        return location;
+    }
+
+    public void setLocation(String location) {
+        this.location = location;
     }
 
     public String getGuide_image() {

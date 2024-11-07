@@ -21,13 +21,12 @@
     android:layout_height="wrap_content"
     android:text="title"
     android:id="@+id/nameCategory"
-    android:layout_marginStart="4dp"
-    android:layout_marginEnd="8dp"
+    android:layout_marginEnd="4dp"
     android:layout_gravity="center"
     android:textColor="@color/black"
     android:visibility="visible"
     tools:visibility="gone"
-    android:textSize="15sp"
+    android:textSize="13sp"
     android:textStyle="bold"
     />
 

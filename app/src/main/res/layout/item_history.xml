@@ -5,83 +5,113 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray"
     android:layout_margin="3dp"
-    app:cardCornerRadius="5dp"
-    >
+    app:cardCornerRadius="5dp">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:weightSum="6"
         android:paddingTop="5dp"
-        android:paddingBottom="5dp"
-        >
+        android:paddingBottom="5dp">
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:gravity="center_vertical">
 
             <TextView
+                android:id="@+id/tvTourName"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTourName"
                 android:text="Paris, Phap"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"/>
 
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvNumOfPeople"
-                android:text="5 people"
-                android:layout_marginStart="10dp"/>
+                >
+
+                <TextView
+                    android:id="@+id/tvNumOfPeople"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:text="5"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/peopletext"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="5dp"
+                    android:text="people"
+                    app:layout_constraintStart_toEndOf="@+id/tvNumOfPeople"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
+
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:gravity="center_vertical">
 
             <TextView
+                android:id="@+id/tvTourDate"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTourDate"
                 android:text="10/10/2024"
                 android:textSize="16dp"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"/>
-
-            <TextView
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvTotal"
-                android:text="$500"
-                android:layout_marginStart="10dp"/>
+                >
+                <TextView
+                    android:id="@+id/tvTotal"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="500"
+                    android:layout_marginStart="10dp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"/>
+                <TextView
+                    android:id="@+id/dola"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="3dp"
+                    android:text="$"
+                    app:layout_constraintStart_toEndOf="@+id/tvTotal"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:layout_weight="2">
+            android:layout_weight="2"
+            android:gravity="center_vertical">
 
             <TextView
+                android:id="@+id/tvStatus"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:id="@+id/tvStatus"
                 android:text="Accept"
                 android:textColor="@color/green"
                 android:textStyle="bold"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                />
-
+                android:layout_marginTop="10dp"/>
         </LinearLayout>
-
-
     </LinearLayout>
 </androidx.cardview.widget.CardView>

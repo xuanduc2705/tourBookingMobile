@@ -3,19 +3,71 @@
     android:layout_width="240dp"
     android:layout_height="215dp"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:elevation="3dp"
+    android:elevation="5dp"
     android:layout_margin="8dp"
     xmlns:tools="http://schemas.android.com/tools"
     android:background="@drawable/white_corner_bg">
 <com.google.android.material.imageview.ShapeableImageView
     android:layout_width="240dp"
-    android:layout_height="130dp"
+    android:layout_height="120dp"
     android:layout_margin="8dp"
     android:id="@+id/imageCategory2"
     android:scaleType="centerCrop"
+    android:paddingHorizontal="8dp"
     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.circleImageView"
     tools:srcCompat="@drawable/hathu"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent"/>
+    <TextView
+        android:id="@+id/textViewCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Title"
+        android:textStyle="bold"
+        android:layout_marginLeft="15dp"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="8dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageCategory2"/>
+<ImageView
+    android:layout_width="20dp"
+    android:layout_height="20dp"
+    android:id="@+id/locationIcon"
+    android:layout_marginTop="4dp"
+    app:layout_constraintStart_toStartOf="@+id/textViewCategory"
+    app:layout_constraintTop_toBottomOf="@+id/textViewCategory"
+    app:srcCompat="@drawable/location"/>
+    <TextView
+        android:id="@+id/textLocation"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Location"
+        android:textSize="15sp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/locationIcon"
+        app:layout_constraintTop_toBottomOf="@+id/textViewCategory"/>
+    <TextView
+        android:id="@+id/priceCategory"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="$0"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:textColor="@color/lightblue"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toStartOf="@id/locationIcon"
+        app:layout_constraintTop_toBottomOf="@+id/locationIcon"/>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="/person"
+        android:textSize="15sp"
+        android:layout_marginLeft="4dp"
+        android:textColor="@color/black"
+        android:layout_marginTop="4dp"
+        app:layout_constraintStart_toEndOf="@id/priceCategory"
+        app:layout_constraintTop_toBottomOf="@+id/locationIcon"/>
 </androidx.constraintlayout.widget.ConstraintLayout>

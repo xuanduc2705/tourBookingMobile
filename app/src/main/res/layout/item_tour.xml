@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="#EBE9E9">
+
+    <TextView
+        android:id="@+id/tvTourName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tour Name"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <!-- Tour Image ImageView -->
+    <ImageView
+        android:id="@+id/ivTourImage"
+        android:layout_width="0dp"
+        android:layout_height="100dp"
+        android:src="@drawable/ic_launcher_background"
+        android:contentDescription="Tour Image"
+        android:scaleType="centerCrop"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTourName"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <!-- Tour Price TextView -->
+    <TextView
+        android:id="@+id/tvTourPrice"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Price"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ivTourImage"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <!-- Tour Guide TextView -->
+    <TextView
+        android:id="@+id/tvGuideName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Tour Guide"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvTourPrice"
+        app:layout_constraintWidth_percent="0.2" />
+
+    <!-- Tour Date TextView -->
+    <TextView
+        android:id="@+id/tvDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:textSize="14sp"
+        android:gravity="center"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/tvGuideName"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintWidth_percent="0.2" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

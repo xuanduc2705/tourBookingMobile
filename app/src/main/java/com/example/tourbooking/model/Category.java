@@ -8,7 +8,10 @@ public class Category implements Serializable {
 
     public Category() {
     }
-
+    public Category(int id, String name) {
+        this.id = id;
+        this.name = name;
+    }
     public Category(int id, String image, String name, String create_at, String update_at, String delete_at) {
         this.id = id;
         this.image = image;
